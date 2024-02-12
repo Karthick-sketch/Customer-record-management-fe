@@ -1,0 +1,58 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Michael",
+      "lastName": "De Santa",
+      "email": "michael@eyefind.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Trever",
+      "lastName": "Philips",
+      "email": "trever@eyefind.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Franklin",
+      "lastName": "Clinton",
+      "email": "franklin@eyefind.com"
+    },
+    {
+      "id": 4,
+      "firstName": "Niko",
+      "lastName": "Bellic",
+      "email": "niko@eyefind.com"
+    },
+    {
+      "id": 5,
+      "firstName": "Johnny",
+      "lastName": "Klebitz",
+      "email": "johnny@eyefind.com"
+    },
+    {
+      "id": 6,
+      "firstName": "Luis",
+      "lastName": "Lopez",
+      "email": "luis@eyefind.com"
+    },
+    {
+      "id": 7,
+      "firstName": "Carl",
+      "lastName": "Johnson",
+      "email": "carl@eyefind.com"
+    },
+    {
+      "id": 8,
+      "firstName": "Tommy",
+      "lastName": "Vercetti",
+      "email": "tommy@eyefind.com"
+    },
+    {
+      "id": 9,
+      "firstName": "Claude",
+      "lastName": "Speed",
+      "email": "claude@eyefind.com"
+    }
+  ]
+}

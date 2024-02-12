@@ -1,0 +1,18 @@
+.contact-item {
+  background-color: white;
+  padding: 10px 6px;
+  margin-bottom: 10px;
+}
+
+.contact {
+  color: black;
+  text-decoration: none;
+  font-size: large;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.contact:hover {
+  color: blue;
+  text-decoration: underline;
+}
