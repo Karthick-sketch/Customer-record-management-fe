@@ -3,6 +3,8 @@ import "./App.css";
 import ContactList from "./ContactList";
 import Contact from "./Contact";
 import ContactForm from "./ContactForm";
+import FileUploadStatus from "./FileUploadStatus";
+import CsvFileUpload from "./CsvFileUpload";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
           <Route path="/contacts" element={<ContactList />} />
           <Route path="/contact/:id" element={<Contact />} />
           <Route path="/contact/new" element={<ContactForm />} />
+          <Route path="/upload-status" element={<FileUploadStatus />} />
+          <Route path="/upload-csv" element={<CsvFileUpload />} />
         </Routes>
       </Router>
     </>
