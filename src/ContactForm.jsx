@@ -1,49 +1,32 @@
 import { useEffect, useState } from "react";
-import { capitalize } from "./StringUtils";
+import { convertToNormalText } from "./StringUtils";
 
 function ContactForm() {
-  const [customFields, setCustomFields] = useState([]);
+  const [contactFields, setContactFields] = useState([]);
 
   useEffect(() => {
-    fetch("../custom-fields.json")
+    fetch("../contact-fields.json")
       .then((response) => response.json())
-      .then((data) => setCustomFields(data.customFields))
+      .then((data) =>
+        setContactFields(data.defaultFields.concat(data.customFields))
+      )
       .catch((error) => console.error(error));
   }, []);
 
-  const generateCustomFields = customFields.map((customField, i) => {
+  const formFields = contactFields.map((contactField, i) => {
     return (
       <div key={i}>
-        <label htmlFor="">{capitalize(customField.fieldName)}</label>
-        <input
-          type={customField.dataType}
-          id={`customField-${customField.id}`}
-        />
+        <p>{convertToNormalText(contactField.fieldName)}</p>
+        <input type={contactField.dataType} name={contactField.fieldName} />
       </div>
     );
   });
 
   return (
-    <form action="/contact/1" method="get">
-      <div>
-        <label htmlFor="">First name</label>
-        <input type="text" id="firstName" />
-      </div>
-      <div>
-        <label htmlFor="">Last name</label>
-        <input type="text" id="lastName" />
-      </div>
-      <div>
-        <label htmlFor="">Email</label>
-        <input type="text" id="email" />
-      </div>
-      <div>
-        <label htmlFor="">Phone number</label>
-        <input type="text" id="phoneNumber" />
-      </div>
-      {generateCustomFields}
+    <section>
+      {formFields}
       <input type="submit" value="Create" />
-    </form>
+    </section>
   );
 }
 

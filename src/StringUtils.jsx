@@ -5,7 +5,7 @@ const dataTypes = {
 };
 
 function convertToNormalText(camelCaseString) {
-  return camelCaseString.replace(/([A-Z])/g, " $1");
+  return capitalize(camelCaseString.replace(/([A-Z])/g, " $1"));
 }
 
 function capitalize(text) {
