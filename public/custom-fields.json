@@ -1,0 +1,14 @@
+{
+  "customFields": [
+    {
+      "id": 1,
+      "fieldName": "age",
+      "dataType": "number"
+    },
+    {
+      "id": 2,
+      "fieldName": "gender",
+      "dataType": "text"
+    }
+  ]
+}

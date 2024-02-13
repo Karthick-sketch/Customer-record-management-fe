@@ -1,26 +1,37 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { convertToNormalText } from "./StringUtils";
 import "./Contact.css";
 
-function Contact({ data }) {
+function Contact() {
   const { id } = useParams();
   const [contact, setContact] = useState({});
 
   useEffect(() => {
-    try {
-      const fetchedContact = data.find((c) => c.id == id);
-      if (fetchedContact) {
-        setContact(fetchedContact);
-      }
-    } catch (error) {
-      console.error("Error fetching contact ", error);
-    }
-  }, [data, id]);
+    fetch(`../contact-${id}.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setContact({ ...data.defaultFields, ...data.customFields });
+      })
+      .catch((error) => {
+        console.error("Error fetching JSON data", error);
+      });
+  }, []);
+
+  const contactFields = () =>
+    Object.keys(contact)
+      .filter((field) => !["id", "firstName", "lastName"].includes(field))
+      .map((field, i) => (
+        <div key={i}>
+          <p className="contact-field-name">{convertToNormalText(field)}</p>
+          <p className="contact-field-value">{contact[field]}</p>
+        </div>
+      ));
 
   return (
     <div className="contact-item" id={`contact-${contact.id}`}>
-      <p>{`${contact.firstName} ${contact.lastName}`}</p>
-      <p>{contact.email}</p>
+      <h2 className="contact-name">{`${contact.firstName} ${contact.lastName}`}</h2>
+      <div className="contact-fields">{contactFields()}</div>
     </div>
   );
 }

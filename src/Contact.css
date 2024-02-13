@@ -16,3 +16,13 @@
   color: blue;
   text-decoration: underline;
 }
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+}
+
+.contact-field-name {
+  text-transform: capitalize;
+  font-weight: bold;
+}
