@@ -26,3 +26,14 @@
   text-transform: capitalize;
   font-weight: bold;
 }
+
+.contact-list-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-list {
+  margin: 0;
+  padding: 10px 10px 0 10px;
+  flex: 6;
+}

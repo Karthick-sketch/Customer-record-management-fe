@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SideBar from "./SideBar";
 import "./Contact.css";
 
 function ContactList() {
@@ -26,7 +27,12 @@ function ContactList() {
     </li>
   ));
 
-  return <ul>{contactList}</ul>;
+  return (
+    <div className="contact-list-page">
+      <SideBar />
+      <ul className="contact-list">{contactList}</ul>
+    </div>
+  );
 }
 
 export default ContactList;

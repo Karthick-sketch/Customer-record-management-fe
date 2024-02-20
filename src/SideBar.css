@@ -1,0 +1,22 @@
+.side-bar {
+  width: 180px;
+  padding: 10px 10px 0 10px;
+  background-color: #11823b;
+}
+
+.side-bar > div {
+  padding: 8px 0 8px 8px;
+  background-color: white;
+  margin-bottom: 1rem;
+}
+
+.side-bar-options {
+  color: black;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.side-bar-options:hover {
+  color: blue;
+  text-decoration: underline;
+}

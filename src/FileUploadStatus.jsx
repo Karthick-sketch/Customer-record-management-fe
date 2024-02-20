@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import SideBar from "./SideBar";
+import "./FileUploadStatus.css";
 
 function FileUploadStatus() {
   const [fileUploadStatus, setFileUploadStatus] = useState([]);
@@ -23,18 +25,21 @@ function FileUploadStatus() {
   });
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <td>File name</td>
-          <td>Total records</td>
-          <td>Uploaded records</td>
-          <td>Duplicate records</td>
-          <td>Invalid records</td>
-        </tr>
-      </thead>
-      <tbody>{uploadedFileStatus}</tbody>
-    </table>
+    <div className="contact-list-page">
+      <SideBar />
+      <table className="file-upload-status">
+        <thead>
+          <tr>
+            <td>File name</td>
+            <td>Total records</td>
+            <td>Uploaded records</td>
+            <td>Duplicate records</td>
+            <td>Invalid records</td>
+          </tr>
+        </thead>
+        <tbody>{uploadedFileStatus}</tbody>
+      </table>
+    </div>
   );
 }
 
