@@ -1,4 +1,4 @@
-import SideBar from "../SideBar";
+import SideBar from "../side-bar/SideBar";
 import "./CustomField.css";
 
 function CustomField() {

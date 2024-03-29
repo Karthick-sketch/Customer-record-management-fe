@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { convertToNormalText } from "../utils/StringUtils";
 
-function ContactForm() {
+function CustomerRecordForm() {
   const [contactFields, setContactFields] = useState([]);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ function ContactForm() {
   );
 }
 
-export default ContactForm;
+export default CustomerRecordForm;

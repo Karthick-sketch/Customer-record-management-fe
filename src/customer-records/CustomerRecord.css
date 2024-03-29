@@ -1,10 +1,10 @@
-.contact-item {
+.customer-record-item {
   background-color: white;
   padding: 10px 6px;
   margin-bottom: 10px;
 }
 
-.contact {
+.customer-record {
   color: black;
   text-decoration: none;
   font-size: large;
@@ -12,27 +12,27 @@
   cursor: pointer;
 }
 
-.contact:hover {
+.customer-record:hover {
   color: blue;
   text-decoration: underline;
 }
 
-.contact-fields {
+.customer-record-fields {
   display: grid;
   grid-template-columns: repeat(5, auto);
 }
 
-.contact-field-name {
+.customer-record-field-name {
   text-transform: capitalize;
   font-weight: bold;
 }
 
-.contact-list-page {
+.customer-record-list-page {
   display: flex;
   justify-content: space-between;
 }
 
-.contact-list {
+.customer-record-list {
   margin: 0;
   padding: 10px 10px 0 10px;
   flex: 6;

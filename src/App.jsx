@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import ContactList from "./ContactList";
-import Contact from "./Contact";
-import ContactForm from "./ContactForm";
+import CustomerRecords from "./customer-records/CustomerRecords";
+import CustomerRecord from "./customer-records/CustomerRecord";
+import CustomerRecordForm from "./customer-records/CustomerRecordForm";
 import FileUploadStatus from "./file-upload-status/FileUploadStatus";
-import CsvFileUpload from "./CsvFileUpload";
+import CsvFileUpload from "./file-upload-status/CsvFileUpload";
 import CustomField from "./custom-field/CustomField";
 import "./App.css";
 
@@ -11,10 +11,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/contacts" />} />
-        <Route path="/contacts" element={<ContactList />} />
-        <Route path="/contact/:id" element={<Contact />} />
-        <Route path="/contact/new" element={<ContactForm />} />
+        <Route
+          path="/customer-records/account/:accountId"
+          element={<CustomerRecords />}
+        />
+        <Route
+          path="/customer-record/account/:accountId/id/:id"
+          element={<CustomerRecord />}
+        />
+        <Route path="/customer-record/new" element={<CustomerRecordForm />} />
         <Route path="/upload-status" element={<FileUploadStatus />} />
         <Route path="/upload-csv" element={<CsvFileUpload />} />
         <Route path="/custom-fields" element={<CustomField />} />
