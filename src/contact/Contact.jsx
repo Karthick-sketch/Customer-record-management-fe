@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { convertToNormalText } from "./StringUtils";
+import { convertToNormalText } from "../utils/StringUtils";
 import "./Contact.css";
 
 function Contact() {

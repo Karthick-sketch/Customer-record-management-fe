@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SideBar from "./SideBar";
+import SideBar from "../side-bar/SideBar";
 import "./FileUploadStatus.css";
 
 function FileUploadStatus() {

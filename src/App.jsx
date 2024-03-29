@@ -1,16 +1,17 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ContactList from "./ContactList";
 import Contact from "./Contact";
 import ContactForm from "./ContactForm";
-import FileUploadStatus from "./FileUploadStatus";
+import FileUploadStatus from "./file-upload-status/FileUploadStatus";
 import CsvFileUpload from "./CsvFileUpload";
-import CustomField from "./CustomField";
+import CustomField from "./custom-field/CustomField";
+import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/contacts" />} />
         <Route path="/contacts" element={<ContactList />} />
         <Route path="/contact/:id" element={<Contact />} />
         <Route path="/contact/new" element={<ContactForm />} />

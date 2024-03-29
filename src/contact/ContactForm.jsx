@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { convertToNormalText } from "./StringUtils";
+import { convertToNormalText } from "../utils/StringUtils";
 
 function ContactForm() {
   const [contactFields, setContactFields] = useState([]);
