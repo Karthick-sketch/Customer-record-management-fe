@@ -5,7 +5,7 @@ function SideBar() {
   return (
     <section className="side-bar">
       <div>
-        <Link to="/contacts" className="side-bar-options">
+        <Link to="/customer-records/account/1" className="side-bar-options">
           Contacts
         </Link>
       </div>
@@ -15,7 +15,7 @@ function SideBar() {
         </Link>
       </div>
       <div>
-        <Link to="/custom-fields" className="side-bar-options">
+        <Link to="/custom-fields/account/1" className="side-bar-options">
           Custom Fields
         </Link>
       </div>

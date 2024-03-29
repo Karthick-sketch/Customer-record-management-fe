@@ -4,7 +4,7 @@ import CustomerRecord from "./customer-records/CustomerRecord";
 import CustomerRecordForm from "./customer-records/CustomerRecordForm";
 import FileUploadStatus from "./file-upload-status/FileUploadStatus";
 import CsvFileUpload from "./file-upload-status/CsvFileUpload";
-import CustomField from "./custom-field/CustomField";
+import CustomField from "./customer-records/CustomerRecordFields";
 import "./App.css";
 
 function App() {
@@ -22,7 +22,10 @@ function App() {
         <Route path="/customer-record/new" element={<CustomerRecordForm />} />
         <Route path="/upload-status" element={<FileUploadStatus />} />
         <Route path="/upload-csv" element={<CsvFileUpload />} />
-        <Route path="/custom-fields" element={<CustomField />} />
+        <Route
+          path="/custom-fields/account/:accountId"
+          element={<CustomField />}
+        />
       </Routes>
     </BrowserRouter>
   );
