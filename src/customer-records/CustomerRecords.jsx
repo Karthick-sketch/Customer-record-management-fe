@@ -39,7 +39,13 @@ function CustomerRecords() {
   return (
     <div className="customer-record-list-page">
       <SideBar />
-      <ul className="customer-record-list">{customerRecordList}</ul>
+      <section className="customer-record-list">
+        <div>
+          <h3>Contacts</h3>
+          <Link to={`/customer-record/account/${accountId}/new`}>Create</Link>
+        </div>
+        <ul>{customerRecordList}</ul>
+      </section>
     </div>
   );
 }

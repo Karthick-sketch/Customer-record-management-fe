@@ -19,7 +19,10 @@ function App() {
           path="/customer-record/account/:accountId/id/:id"
           element={<CustomerRecord />}
         />
-        <Route path="/customer-record/new" element={<CustomerRecordForm />} />
+        <Route
+          path="/customer-record/account/:accountId/new"
+          element={<CustomerRecordForm />}
+        />
         <Route path="/upload-status" element={<FileUploadStatus />} />
         <Route path="/upload-csv" element={<CsvFileUpload />} />
         <Route
