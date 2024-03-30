@@ -1,22 +1,39 @@
-.side-bar {
-  width: 180px;
-  padding: 10px 10px 0 10px;
-  background-color: #11823b;
+.navbar {
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  overflow-y: auto; /* Enable vertical scroll if necessary */
+  z-index: 1000; /* Ensure navbar is above other content */
 }
 
-.side-bar > div {
-  padding: 8px 0 8px 8px;
-  background-color: white;
-  margin-bottom: 1rem;
+.logo {
+  padding-left: 6px;
+  padding-right: 6px;
+  color: #f0f0f0;
+  font-weight: bolder;
 }
 
-.side-bar-options {
-  color: black;
-  font-size: 1.25rem;
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navbar ul li {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar ul li:hover {
+  background-color: #555;
+}
+
+.navbar-link {
+  width: 100%;
+  color: white;
   text-decoration: none;
-}
-
-.side-bar-options:hover {
-  color: blue;
-  text-decoration: underline;
 }

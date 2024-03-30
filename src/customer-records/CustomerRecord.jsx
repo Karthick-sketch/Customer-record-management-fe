@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SideBar from "../side-bar/SideBar";
 import { convertToNormalText } from "../utils/StringUtils";
 import "./CustomerRecord.css";
 
@@ -14,8 +15,8 @@ function CustomerRecord() {
     getCustomerRecord();
   }, []);
 
-  async function getCustomerRecord() {
-    return await api
+  function getCustomerRecord() {
+    api
       .get(`/customer-records/account/${accountId}/id/${id}`)
       .then((response) => {
         let data = response.data;
@@ -41,12 +42,18 @@ function CustomerRecord() {
   };
 
   return (
-    <div
-      className="customer-record-item"
-      id={`customer-record-${customerRecord.id}`}
-    >
-      <h2 className="customer-record-name">{`${customerRecord.firstName} ${customerRecord.lastName}`}</h2>
-      <div className="customer-record-fields">{customerRecordFields()}</div>
+    <div className="container">
+      <SideBar />
+      <section className="content">
+        <h2>Customer Records</h2>
+
+        <div className="customer-record-item">
+          <h3 className="customer-record-name">
+            {`${customerRecord.firstName} ${customerRecord.lastName}`}
+          </h3>
+          <div className="customer-record-fields">{customerRecordFields()}</div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,180 @@
+/* style.css */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.content {
+  flex-grow: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 200px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h2 {
+  color: #333;
+}
+
+.contact-create-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  background-color: #008b69;
+  border-radius: 20px;
+}
+
+.contact-create-btn:hover {
+  background-color: #006e52;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 38rem;
+  overflow: scroll;
+}
+
+.contact-list li {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.contact-list li:last-child {
+  border-bottom: none;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-item > span {
+  padding: 0 10px; /* Adjust spacing around each piece of contact info */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-name {
+  flex-basis: 20%;
+}
+.contact-email {
+  flex-basis: 30%;
+}
+.contact-mobile {
+  flex-basis: 20%;
+}
+.contact-address {
+  flex-basis: 20%;
+}
+.contact-city {
+  flex-basis: 10%;
+}
+
+.contact-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.contact-list li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+/* Additional styles for .contact-details if needed */
+
+.contact-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9f9f9; /* A subtle background color for the header */
+  border-bottom: 2px solid #e1e1e1; /* A stronger line to distinguish the header */
+  font-weight: bold; /* Make header text stand out */
+  margin-bottom: 10px; /* Space between header and list */
+}
+
+/* Match the flex-basis values with those in .contact-item > span */
+.header-name {
+  flex-basis: 20%;
+}
+
+.header-email {
+  flex-basis: 30%;
+}
+
+.header-mobile {
+  flex-basis: 20%;
+}
+
+.header-address {
+  flex-basis: 20%;
+}
+
+.header-city {
+  flex-basis: 10%;
+}
+
+/* The rest of your CSS for .contact-list and .contact-item remains unchanged */
+
+.hidden {
+  display: none;
+}
+
+.main-header h1 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.search-container button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+}
