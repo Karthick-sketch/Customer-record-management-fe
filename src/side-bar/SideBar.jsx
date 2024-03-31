@@ -15,10 +15,7 @@ function SideBar() {
           </Link>
         </li>
         <li>
-          <Link
-            to={"/customer-records/account/1/lists"}
-            className="navbar-link"
-          >
+          <Link to={"/lists/account/1"} className="navbar-link">
             Lists
           </Link>
         </li>

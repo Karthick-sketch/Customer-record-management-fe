@@ -6,6 +6,8 @@ import CsvFileUpload from "./file-upload-status/CsvFileUpload";
 import CustomField from "./customer-records/CustomerRecordFields";
 import CustomerRecordList from "./customer-records/CustomerRecordList";
 import NotFound from "./utils/NotFound";
+import ContactList from "./contact-list/ContactList";
+import List from "./contact-list/List";
 import "./App.css";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           path="/customer-record/account/:accountId/new"
           element={<CustomerRecordForm />}
         />
+        <Route path="/lists/account/:accountId" element={<ContactList />} />
+        <Route path="/lists/account/:accountId/id/:id" element={<List />} />
         <Route path="/upload-status" element={<FileUploadStatus />} />
         <Route path="/upload-csv" element={<CsvFileUpload />} />
         <Route
