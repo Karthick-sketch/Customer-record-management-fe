@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import Search from "../search/Search";
 import SideBar from "../side-bar/SideBar";
 import "./CustomerRecordList.css";
 
@@ -23,6 +24,15 @@ function CustomerRecordList() {
       });
   }
 
+  function searchCustomerRecords(search) {
+    api
+      .get(`/customer-records/account/${accountId}/search?q=${search}`)
+      .then((response) => setCustomerRecords(response.data))
+      .catch((error) => {
+        console.error("Error fetching JSON data", error);
+      });
+  }
+
   return (
     <div className="container">
       <SideBar />
@@ -38,10 +48,7 @@ function CustomerRecordList() {
           </Link>
         </div>
 
-        <div className="search-container">
-          <input type="text" id="search-box" placeholder="Search contacts..." />
-          <button id="search-btn">Search</button>
-        </div>
+        <Search accountId={accountId} handleSearch={searchCustomerRecords} />
 
         <div className="contact-header">
           <span className="header-name">Name</span>
