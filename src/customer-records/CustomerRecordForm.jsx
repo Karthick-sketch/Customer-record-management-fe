@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { convertToNormalText } from "../utils/StringUtils";
-import SideBar from "../side-bar/SideBar";
+import "./CustomerRecordForm.css";
 
-function CustomerRecordForm() {
+function CustomerRecordForm({ disable }) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const navigateTo = useNavigate();
@@ -60,35 +60,36 @@ function CustomerRecordForm() {
 
   function generateInputFields(key, name, type) {
     return (
-      <div key={key}>
-        <p>{convertToNormalText(name)}</p>
+      <div key={key} className="input-field-container">
+        <label className="input-field-label">{convertToNormalText(name)}</label>
         <input
           type={type}
           name={name}
           value={customerRecords[name]}
           onChange={handleChange}
+          className="input-field"
         />
       </div>
     );
   }
 
   return (
-    <div className="container">
-      <SideBar />
-
-      <section className="content">
-        <h2>Customer Records</h2>
-
-        <form onSubmit={handleSubmit}>
-          {defaultFieldDetails.map((df, i) =>
-            generateInputFields(i, df.name, df.type)
-          )}
-          {customFieldDetails.map((cf) =>
-            generateInputFields(cf.id, cf.customFieldName, cf.dataType)
-          )}
-          <input type="submit" value="Create" />
-        </form>
-      </section>
+    <div className="right-side-window">
+      <div className="right-side-window-header">
+        <h2>Create contact</h2>
+        <button className="close-btn" onClick={() => disable(false)}>
+          <img src="/src/assets/close.svg" alt="close" />
+        </button>
+      </div>
+      <form className="right-side-window-form" onSubmit={handleSubmit}>
+        {defaultFieldDetails.map((df, i) =>
+          generateInputFields(i, df.name, df.type)
+        )}
+        {customFieldDetails.map((cf) =>
+          generateInputFields(cf.id, cf.customFieldName, cf.dataType)
+        )}
+        <input type="submit" value="Create" className="create-btn" />
+      </form>
     </div>
   );
 }

@@ -11,6 +11,11 @@ html {
   flex-wrap: nowrap;
 }
 
+.dim-page {
+  filter: brightness(50%);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .main-content {
   flex-grow: 1;
   padding: 20px;
@@ -40,6 +45,7 @@ html {
   text-decoration: none;
   color: white;
   background-color: #009977;
+  border: 1px solid transparent;
   border-radius: 20px;
 }
 

@@ -45,7 +45,7 @@ function CustomerRecord() {
     <div className="container">
       <SideBar />
       <section className="content">
-        <h2>Customer Records</h2>
+        <h2>Contacts</h2>
 
         <div className="customer-record-item">
           <h3 className="customer-record-name">

@@ -7,19 +7,31 @@ function SideBar() {
       <p className="logo">LOGO</p>
       <ul>
         <li>
-          <Link
-            to={"/customer-records/account/1/contacts"}
-            className="navbar-link"
-          >
+          <img
+            src="/src/assets/contact.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
+          <Link to={"/contacts/account/1"} className="navbar-link">
             Contacts
           </Link>
         </li>
         <li>
+          <img
+            src="/src/assets/list.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
           <Link to={"/lists/account/1"} className="navbar-link">
             Lists
           </Link>
         </li>
         <li>
+          <img
+            src="/src/assets/workflow.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
           <Link
             to={"/customer-records/account/1/segments"}
             className="navbar-link"
@@ -28,6 +40,11 @@ function SideBar() {
           </Link>
         </li>
         <li>
+          <img
+            src="/src/assets/whatsapp.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
           <Link
             to={"/customer-records/account/1/whatsapp"}
             className="navbar-link"
@@ -36,6 +53,11 @@ function SideBar() {
           </Link>
         </li>
         <li>
+          <img
+            src="/src/assets/workflow.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
           <Link
             to={"/customer-records/account/1/workflow"}
             className="navbar-link"

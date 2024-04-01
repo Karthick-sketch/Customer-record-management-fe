@@ -3,12 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Search from "../search/Search";
 import SideBar from "../side-bar/SideBar";
+import CustomerRecordForm from "./CustomerRecordForm";
 import "./CustomerRecordList.css";
 
 function CustomerRecordList() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const { accountId } = useParams();
+  const [isSideWindowEnabled, setIsSideWindowEnabled] = useState(false);
   const [customerRecords, setCustomerRecords] = useState([]);
 
   useEffect(() => {
@@ -34,57 +36,64 @@ function CustomerRecordList() {
   }
 
   return (
-    <div className="container">
-      <SideBar />
+    <>
+      {isSideWindowEnabled && (
+        <CustomerRecordForm disable={setIsSideWindowEnabled} />
+      )}
+      <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
+        <SideBar />
 
-      <section className="content">
-        <div className="header">
-          <h2>Customer Records</h2>
-          <Link
-            to={`/customer-record/account/${accountId}/new`}
-            className="contact-create-btn"
-          >
-            Create
-          </Link>
-        </div>
+        <section className="content">
+          <div className="header">
+            <h2>Contacts</h2>
+            <button
+              className="contact-create-btn"
+              onClick={() => setIsSideWindowEnabled(true)}
+            >
+              Create
+            </button>
+          </div>
 
-        <Search accountId={accountId} handleSearch={searchCustomerRecords} />
+          <Search accountId={accountId} handleSearch={searchCustomerRecords} />
 
-        <div className="contact-header">
-          <span className="header-name">Name</span>
-          <span className="header-email">Email</span>
-          <span className="header-mobile">Mobile</span>
-          <span className="header-address">Address</span>
-          <span className="header-city">City</span>
-        </div>
+          <div className="contact-header">
+            <span className="header-name">Name</span>
+            <span className="header-email">Email</span>
+            <span className="header-mobile">Mobile</span>
+            <span className="header-address">Address</span>
+            <span className="header-city">City</span>
+          </div>
 
-        <ul className="contact-list">
-          {customerRecords.map((cr) => (
-            <li key={cr.customerRecord.id}>
-              <Link
-                to={`/customer-record/account/${cr.customerRecord.accountId}/id/${cr.customerRecord.id}`}
-              >
-                <div className="contact-item">
-                  <span className="contact-name">
-                    {cr.customerRecord.firstName} {cr.customerRecord.lastName}
-                  </span>
-                  <span className="contact-email">
-                    {cr.customerRecord.email}
-                  </span>
-                  <span className="contact-mobile">
-                    {cr.customerRecord.phoneNumber}
-                  </span>
-                  <span className="contact-address">
-                    {cr.customerRecord.address}
-                  </span>
-                  <span className="contact-city">{cr.customerRecord.city}</span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
+          <ul className="contact-list">
+            {customerRecords.map((cr) => (
+              <li key={cr.customerRecord.id}>
+                <Link
+                  to={`/customer-record/account/${cr.customerRecord.accountId}/id/${cr.customerRecord.id}`}
+                >
+                  <div className="contact-item">
+                    <span className="contact-name">
+                      {cr.customerRecord.firstName} {cr.customerRecord.lastName}
+                    </span>
+                    <span className="contact-email">
+                      {cr.customerRecord.email}
+                    </span>
+                    <span className="contact-mobile">
+                      {cr.customerRecord.phoneNumber}
+                    </span>
+                    <span className="contact-address">
+                      {cr.customerRecord.address}
+                    </span>
+                    <span className="contact-city">
+                      {cr.customerRecord.city}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </>
   );
 }
 

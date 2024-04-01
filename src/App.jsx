@@ -15,16 +15,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/customer-records/account/:accountId/contacts"
+          path="/contacts/account/:accountId"
           element={<CustomerRecordList />}
         />
         <Route
-          path="/customer-record/account/:accountId/id/:id"
+          path="/contacts/account/:accountId/id/:id"
           element={<CustomerRecord />}
-        />
-        <Route
-          path="/customer-record/account/:accountId/new"
-          element={<CustomerRecordForm />}
         />
         <Route path="/lists/account/:accountId" element={<ContactList />} />
         <Route path="/lists/account/:accountId/id/:id" element={<List />} />

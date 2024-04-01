@@ -3,13 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Search from "../search/Search";
 import SideBar from "../side-bar/SideBar";
-import "./ContactList.css";
+import ListForm from "./ListForm";
 
 function ContactList() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const { accountId } = useParams();
   const [list, setList] = useState([]);
+  const [isSideWindowEnabled, setIsSideWindowEnabled] = useState(false);
 
   useEffect(() => {
     fetchLists();
@@ -34,39 +35,43 @@ function ContactList() {
   }
 
   return (
-    <div className="container">
-      <SideBar />
+    <>
+      {isSideWindowEnabled && <ListForm disable={setIsSideWindowEnabled} />}
 
-      <section className="content">
-        <div className="header">
-          <h2>Lists</h2>
-          <Link
-            to={`/customer-record/account/${accountId}/new`}
-            className="contact-create-btn"
-          >
-            Create
-          </Link>
-        </div>
+      <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
+        <SideBar />
 
-        <Search accountId={accountId} handleSearch={searchList} />
+        <section className="content">
+          <div className="header">
+            <h2>Lists</h2>
+            <button
+              className="contact-create-btn"
+              onClick={() => setIsSideWindowEnabled(true)}
+            >
+              Create
+            </button>
+          </div>
 
-        <div className="contact-header">
-          <span className="header-name">Name</span>
-        </div>
+          <Search accountId={accountId} handleSearch={searchList} />
 
-        <ul className="contact-list">
-          {list.map((list) => (
-            <li key={list.id}>
-              <Link to={`/lists/account/${list.accountId}/id/${list.id}`}>
-                <div className="contact-item">
-                  <span className="contact-name">{list.listName}</span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
+          <div className="contact-header">
+            <span className="header-name">Name</span>
+          </div>
+
+          <ul className="contact-list">
+            {list.map((list) => (
+              <li key={list.id}>
+                <Link to={`/lists/account/${list.accountId}/id/${list.id}`}>
+                  <div className="contact-item">
+                    <span className="contact-name">{list.listName}</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </>
   );
 }
 

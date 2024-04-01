@@ -1,0 +1,57 @@
+.right-side-window {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: white;
+  border: 1px solid black;
+  /* overflow-y: auto; /* Enable vertical scroll if necessary */
+  z-index: 1;
+}
+
+.right-side-window-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-side-window-form {
+  height: 720px;
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+  padding-bottom: 10px;
+}
+
+.close-btn {
+  cursor: pointer;
+  align-self: center;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.input-field-container {
+  padding-bottom: 1rem;
+}
+
+.input-field-label {
+  color: #333;
+}
+
+.input-field {
+  width: 95%;
+  padding: 6px;
+  margin-top: 6px;
+}
+
+.create-btn {
+  float: right;
+  padding: 8px 20px;
+  font-size: large;
+  color: white;
+  background-color: #009977;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
