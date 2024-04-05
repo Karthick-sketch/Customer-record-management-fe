@@ -41,7 +41,9 @@ function CustomerRecordCreateForm({ accountId, setEnable }) {
           customerRecord={customerRecord}
           setCustomerRecord={setCustomerRecord}
         />
-        <input type="submit" value="Create" className="create-btn" />
+        <footer>
+          <input type="submit" value="Create" className="create-btn" />
+        </footer>
       </form>
     </div>
   );

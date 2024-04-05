@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SideBar from "../side-bar/SideBar";
+import CustomerRecordEditForm from "./CustomerRecordEditForm";
 import { convertToNormalText } from "../utils/StringUtils";
 import "./CustomerRecord.css";
-import CustomerRecordEditForm from "./CustomerRecordEditForm";
 
 function CustomerRecord() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
@@ -54,6 +54,7 @@ function CustomerRecord() {
       )}
       <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
         <SideBar accountId={accountId} />
+
         <section className="content">
           <div className="header">
             <h2>Contacts</h2>

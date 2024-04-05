@@ -15,15 +15,10 @@ function ListForm({ disable }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    let obj = { accountId: accountId, listName: listName };
-    console.log(obj);
     await api
-      .post("/lists", obj)
-      .then((response) => {
-        if (response.status === 201) {
-          let id = response.data.customerRecord.id;
-          navigateTo(`/customer-record/account/${accountId}/id/${id}`);
-        }
+      .post("/lists", { accountId: accountId, listName: listName })
+      .then(({ data: { id } }) => {
+        navigateTo(`/lists/account/${accountId}/id/${id}`);
       })
       .catch((error) => console.error(error));
   }
@@ -46,7 +41,9 @@ function ListForm({ disable }) {
             className="input-field"
           />
         </div>
-        <input type="submit" value="Create" className="create-btn" />
+        <footer>
+          <input type="submit" value="Create" className="create-btn" />
+        </footer>
       </form>
     </div>
   );

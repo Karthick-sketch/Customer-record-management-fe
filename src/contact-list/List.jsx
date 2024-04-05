@@ -10,6 +10,7 @@ function List() {
   const { id, accountId } = useParams();
   const [list, setList] = useState([]);
   const [customerRecords, setCustomerRecords] = useState([]);
+  // const [isSideWindowEnabled, setIsSideWindowEnabled] = useState(false);
 
   useEffect(() => {
     fetchCustomerRecords();
@@ -43,12 +44,12 @@ function List() {
       <section className="content">
         <div className="header">
           <h2>Lists &gt; {list.listName}</h2>
-          <Link
-            to={`/customer-record/account/${accountId}/new`}
+          <button
             className="contact-create-btn"
+            // onClick={() => setIsSideWindowEnabled(true)}
           >
-            Create
-          </Link>
+            Edit
+          </button>
         </div>
 
         <Search accountId={accountId} handleSearch={searchLists} />

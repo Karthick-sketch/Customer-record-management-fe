@@ -38,7 +38,7 @@ function CustomerRecordEditForm({
     <div className="right-side-window">
       <ToastContainer position="bottom-left" />
       <div className="right-side-window-header">
-        <h2>Create contact</h2>
+        <h2>Edit contact</h2>
         <button className="close-btn" onClick={disableSideWindow}>
           <img src="/src/assets/close.svg" alt="close" />
         </button>
@@ -48,7 +48,9 @@ function CustomerRecordEditForm({
           customerRecord={customerRecord}
           setCustomerRecord={setCustomerRecord}
         />
-        <input type="submit" value="Edit" className="create-btn" />
+        <footer>
+          <input type="submit" value="Edit" className="create-btn" />
+        </footer>
       </form>
     </div>
   );
