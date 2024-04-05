@@ -29,7 +29,7 @@ function CustomerRecordFields() {
 
   return (
     <div className="customer-record-list-page">
-      <SideBar />
+      <SideBar accountId={accountId} />
       <ul className="custom-fields">
         {customerRecordFields.map((field, i) => (
           <li key={i}>{convertToNormalText(field)}</li>

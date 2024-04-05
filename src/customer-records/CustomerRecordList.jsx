@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import CustomerRecordCreateForm from "./CustomerRecordCreateForm";
 import Search from "../search/Search";
 import SideBar from "../side-bar/SideBar";
-import CustomerRecordForm from "./CustomerRecordForm";
 import "./CustomerRecordList.css";
 
 function CustomerRecordList() {
@@ -20,7 +20,7 @@ function CustomerRecordList() {
   function fetchCustomerRecords() {
     api
       .get(`/customer-records/account/${accountId}?pageNumber=1&pageSize=30`)
-      .then((response) => setCustomerRecords(response.data))
+      .then(({ data }) => setCustomerRecords(data))
       .catch((error) => {
         console.error("Error fetching JSON data", error);
       });
@@ -29,7 +29,7 @@ function CustomerRecordList() {
   function searchCustomerRecords(search) {
     api
       .get(`/customer-records/account/${accountId}/search?q=${search}`)
-      .then((response) => setCustomerRecords(response.data))
+      .then(({ data }) => setCustomerRecords(data))
       .catch((error) => {
         console.error("Error fetching JSON data", error);
       });
@@ -38,10 +38,13 @@ function CustomerRecordList() {
   return (
     <>
       {isSideWindowEnabled && (
-        <CustomerRecordForm disable={setIsSideWindowEnabled} />
+        <CustomerRecordCreateForm
+          accountId={accountId}
+          setEnable={setIsSideWindowEnabled}
+        />
       )}
       <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
-        <SideBar />
+        <SideBar accountId={accountId} />
 
         <section className="content">
           <div className="header">
@@ -65,27 +68,17 @@ function CustomerRecordList() {
           </div>
 
           <ul className="contact-list">
-            {customerRecords.map((cr) => (
-              <li key={cr.customerRecord.id}>
-                <Link
-                  to={`/customer-record/account/${cr.customerRecord.accountId}/id/${cr.customerRecord.id}`}
-                >
+            {customerRecords.map(({ customerRecord: cr }) => (
+              <li key={cr.id}>
+                <Link to={`/contacts/account/${cr.accountId}/id/${cr.id}`}>
                   <div className="contact-item">
                     <span className="contact-name">
-                      {cr.customerRecord.firstName} {cr.customerRecord.lastName}
+                      {cr.firstName} {cr.lastName}
                     </span>
-                    <span className="contact-email">
-                      {cr.customerRecord.email}
-                    </span>
-                    <span className="contact-mobile">
-                      {cr.customerRecord.phoneNumber}
-                    </span>
-                    <span className="contact-address">
-                      {cr.customerRecord.address}
-                    </span>
-                    <span className="contact-city">
-                      {cr.customerRecord.city}
-                    </span>
+                    <span className="contact-email">{cr.email}</span>
+                    <span className="contact-mobile">{cr.phoneNumber}</span>
+                    <span className="contact-address">{cr.address}</span>
+                    <span className="contact-city">{cr.city}</span>
                   </div>
                 </Link>
               </li>

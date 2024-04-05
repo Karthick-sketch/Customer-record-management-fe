@@ -4,12 +4,14 @@ import axios from "axios";
 import SideBar from "../side-bar/SideBar";
 import { convertToNormalText } from "../utils/StringUtils";
 import "./CustomerRecord.css";
+import CustomerRecordEditForm from "./CustomerRecordEditForm";
 
 function CustomerRecord() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const { id, accountId } = useParams();
   const [customerRecord, setCustomerRecord] = useState({});
+  const [isSideWindowEnabled, setIsSideWindowEnabled] = useState(false);
 
   useEffect(() => {
     getCustomerRecord();
@@ -42,19 +44,37 @@ function CustomerRecord() {
   };
 
   return (
-    <div className="container">
-      <SideBar />
-      <section className="content">
-        <h2>Contacts</h2>
-
-        <div className="customer-record-item">
-          <h3 className="customer-record-name">
-            {`${customerRecord.firstName} ${customerRecord.lastName}`}
-          </h3>
-          <div className="customer-record-fields">{customerRecordFields()}</div>
-        </div>
-      </section>
-    </div>
+    <>
+      {isSideWindowEnabled && (
+        <CustomerRecordEditForm
+          customerRecord={customerRecord}
+          setCustomerRecord={setCustomerRecord}
+          setEnable={setIsSideWindowEnabled}
+        />
+      )}
+      <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
+        <SideBar accountId={accountId} />
+        <section className="content">
+          <div className="header">
+            <h2>Contacts</h2>
+            <button
+              className="contact-create-btn"
+              onClick={() => setIsSideWindowEnabled(true)}
+            >
+              Edit
+            </button>
+          </div>
+          <div className="customer-record-item">
+            <h3 className="customer-record-name">
+              {`${customerRecord.firstName} ${customerRecord.lastName}`}
+            </h3>
+            <div className="customer-record-fields">
+              {customerRecordFields()}
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
 

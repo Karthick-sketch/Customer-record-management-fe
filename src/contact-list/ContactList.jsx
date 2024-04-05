@@ -39,7 +39,7 @@ function ContactList() {
       {isSideWindowEnabled && <ListForm disable={setIsSideWindowEnabled} />}
 
       <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
-        <SideBar />
+        <SideBar accountId={accountId} />
 
         <section className="content">
           <div className="header">

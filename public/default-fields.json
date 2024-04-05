@@ -2,39 +2,48 @@
   "defaultFields": [
     {
       "name": "firstName",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "lastName",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "email",
-      "type": "email"
+      "type": "email",
+      "required": true
     },
     {
       "name": "phoneNumber",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "address",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "city",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "state",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "country",
-      "type": "text"
+      "type": "text",
+      "required": false
     },
     {
       "name": "zipcode",
-      "type": "text"
+      "type": "text",
+      "required": false
     }
   ]
 }

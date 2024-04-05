@@ -38,7 +38,7 @@ function List() {
 
   return (
     <div className="container">
-      <SideBar />
+      <SideBar accountId={accountId} />
 
       <section className="content">
         <div className="header">

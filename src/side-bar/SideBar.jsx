@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./SideBar.css";
 
-function SideBar() {
+function SideBar({ accountId }) {
   return (
     <section className="navbar">
       <p className="logo">LOGO</p>
@@ -12,7 +12,7 @@ function SideBar() {
             alt="list-icon"
             className="sidebar-icon"
           />
-          <Link to={"/contacts/account/1"} className="navbar-link">
+          <Link to={`/contacts/account/${accountId}`} className="navbar-link">
             Contacts
           </Link>
         </li>
@@ -22,7 +22,7 @@ function SideBar() {
             alt="list-icon"
             className="sidebar-icon"
           />
-          <Link to={"/lists/account/1"} className="navbar-link">
+          <Link to={`/lists/account/${accountId}`} className="navbar-link">
             Lists
           </Link>
         </li>
@@ -33,7 +33,7 @@ function SideBar() {
             className="sidebar-icon"
           />
           <Link
-            to={"/customer-records/account/1/segments"}
+            to={`/customer-records/account/${accountId}/segments`}
             className="navbar-link"
           >
             Segments
@@ -46,7 +46,7 @@ function SideBar() {
             className="sidebar-icon"
           />
           <Link
-            to={"/customer-records/account/1/whatsapp"}
+            to={`/customer-records/account/${accountId}/whatsapp`}
             className="navbar-link"
           >
             Whatsapp
@@ -59,7 +59,7 @@ function SideBar() {
             className="sidebar-icon"
           />
           <Link
-            to={"/customer-records/account/1/workflow"}
+            to={`/customer-records/account/${accountId}/workflow`}
             className="navbar-link"
           >
             Workflow
