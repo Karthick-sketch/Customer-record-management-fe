@@ -1,0 +1,31 @@
+.selected-contact {
+  margin: 12px 0 0 0;
+  padding: 8px 3px 8px 8px;
+  background-color: #efefef;
+}
+
+.contact-dropdown {
+  margin-top: 6px;
+  padding: 6px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.contact-dropdown > option {
+  color: aqua;
+}
+
+.selected-contact > button {
+  cursor: pointer;
+  float: right;
+  position: relative;
+  bottom: 2px;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.selected-contact > button > img {
+  width: 20px;
+}
