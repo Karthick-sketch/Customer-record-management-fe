@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./SideBar.css";
 
 function SideBar({ accountId }) {
+  accountId = 1;
   return (
     <section className="navbar">
       <p className="logo">LOGO</p>
@@ -63,6 +64,32 @@ function SideBar({ accountId }) {
             className="navbar-link"
           >
             Workflow
+          </Link>
+        </li>
+        <li>
+          <img
+            src="/src/assets/workflow.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
+          <Link
+            to={`/upload-status/account/${accountId}`}
+            className="navbar-link"
+          >
+            Uploads
+          </Link>
+        </li>
+        <li>
+          <img
+            src="/src/assets/workflow.svg"
+            alt="list-icon"
+            className="sidebar-icon"
+          />
+          <Link
+            to={`/contacts/custom-fields/account/${accountId}`}
+            className="navbar-link"
+          >
+            Custom fields
           </Link>
         </li>
       </ul>

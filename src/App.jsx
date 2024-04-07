@@ -23,10 +23,13 @@ function App() {
         />
         <Route path="/lists/account/:accountId" element={<ContactList />} />
         <Route path="/lists/account/:accountId/id/:id" element={<List />} />
-        <Route path="/upload-status" element={<FileUploadStatus />} />
+        <Route
+          path="/upload-status/account/:accountId"
+          element={<FileUploadStatus />}
+        />
         <Route path="/upload-csv" element={<CsvFileUpload />} />
         <Route
-          path="/custom-fields/account/:accountId"
+          path="/contacts/custom-fields/account/:accountId"
           element={<CustomField />}
         />
         <Route path="*" element={<NotFound />} />
