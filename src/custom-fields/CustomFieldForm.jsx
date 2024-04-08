@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "./CustomField.css";
 
@@ -38,6 +39,7 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
       .then((response) => {
         disableFormWindow();
         fetchCustomerRecordFields();
+        toast.success("Custom field created");
       })
       .catch((error) => console.error(error));
   }
@@ -48,6 +50,7 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
 
   return (
     <div className="right-side-window">
+      <ToastContainer position="bottom-left" />
       <div className="right-side-window-header">
         <h2>Add contacts</h2>
         <button className="close-btn" onClick={disableFormWindow}>
@@ -64,6 +67,7 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
             name="customFieldName"
             className="input-field"
             onChange={handleChange}
+            required
           />
           <br /> <br />
           <label className="input-field-label">Field type</label>
@@ -72,6 +76,7 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
             name="dataType"
             className="input-field"
             onChange={handleChange}
+            required
           >
             <option value="none">Select type</option>
             <option value="text">Text</option>

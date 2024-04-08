@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CustomerRecord from "./customer-records/CustomerRecord";
 import FileUploadStatus from "./file-upload-status/FileUploadStatus";
 import CsvFileUpload from "./file-upload-status/CsvFileUpload";
-import CustomField from "./customer-records/CustomerRecordFields";
+import CustomFieldList from "./custom-fields/CustomFieldList";
 import CustomerRecordList from "./customer-records/CustomerRecordList";
 import NotFound from "./utils/NotFound";
 import ContactList from "./contact-list/ContactList";
@@ -30,7 +30,7 @@ function App() {
         <Route path="/upload-csv" element={<CsvFileUpload />} />
         <Route
           path="/contacts/custom-fields/account/:accountId"
-          element={<CustomField />}
+          element={<CustomFieldList />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

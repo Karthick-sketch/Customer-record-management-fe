@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 import SideBar from "../side-bar/SideBar";
 import "./FileUploadStatus.css";
 
 function FileUploadStatus() {
+  const api = axios.create({ baseURL: "http://localhost:8080" });
+
   const { accountId } = useParams();
   const [fileUploadStatus, setFileUploadStatus] = useState([]);
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     fetch("/file-upload-status.json")
@@ -14,9 +19,24 @@ function FileUploadStatus() {
       .catch((error) => console.error(error));
   }, []);
 
+  function handleFile(e) {
+    setFile(e.target.files[0]);
+  }
+
   function handleSubmit(e) {
-    let { name, value } = e.target;
-    console.log(name, value);
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    api
+      .post(`/upload-status/account/${accountId}/upload-csv`, formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        toast.success("File upload successfully");
+      })
+      .catch((error) => console.error(error));
   }
 
   return (
@@ -28,11 +48,14 @@ function FileUploadStatus() {
           <h2>File Uploads</h2>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <p>Upload CSV file</p>
-          <input type="file" name="csvFile" />
-          <input type="submit" value="Upload" />
-        </form>
+        <div>
+          <ToastContainer position="bottom-left" />
+          <form onSubmit={handleSubmit}>
+            <p>Upload CSV file</p>
+            <input type="file" name="csvFile" onChange={handleFile} />
+            <input type="submit" value="Upload" />
+          </form>
+        </div>
 
         <div className="contact-header">
           <span className="header-name">File name</span>

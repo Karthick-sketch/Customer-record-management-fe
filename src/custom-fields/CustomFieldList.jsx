@@ -6,7 +6,7 @@ import "./CustomField.css";
 import { convertToNormalText } from "../utils/StringUtils";
 import CustomFieldForm from "./CustomFieldForm";
 
-function CustomerRecordFields() {
+function CustomFieldList() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const { accountId } = useParams();
@@ -64,4 +64,4 @@ function CustomerRecordFields() {
   );
 }
 
-export default CustomerRecordFields;
+export default CustomFieldList;
