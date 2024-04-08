@@ -49,12 +49,20 @@ function CustomerRecordList() {
         <section className="content">
           <div className="header">
             <h2>Contacts</h2>
-            <button
-              className="contact-create-btn"
-              onClick={() => setIsSideWindowEnabled(true)}
-            >
-              Create
-            </button>
+            <div className="btn">
+              <a
+                className="export-btn"
+                href={`http://localhost:8080/upload-status/account/${accountId}/export-csv`}
+              >
+                Export
+              </a>
+              <button
+                className="contact-create-btn"
+                onClick={() => setIsSideWindowEnabled(true)}
+              >
+                Create
+              </button>
+            </div>
           </div>
 
           <Search accountId={accountId} handleSearch={searchCustomerRecords} />

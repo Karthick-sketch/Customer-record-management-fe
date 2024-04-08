@@ -38,15 +38,20 @@ html {
   color: #333;
 }
 
+.export-btn,
 .contact-create-btn {
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
-  text-decoration: none;
   color: white;
   background-color: #009977;
   border: 1px solid transparent;
   border-radius: 20px;
+}
+
+.export-btn {
+  text-decoration: none;
+  margin-right: 0.5rem;
 }
 
 .contact-create-btn:hover {
