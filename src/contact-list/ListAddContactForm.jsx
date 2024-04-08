@@ -78,7 +78,6 @@ function ListAddContactForm({ accountId, list, fetchContactList, setEnable }) {
       <form className="right-side-window-form" onSubmit={handleSubmit}>
         <div className="input-field-container">
           <label className="input-field-label">Select contacts</label>
-          <br />
           <select
             name="contacts"
             className="contact-dropdown"

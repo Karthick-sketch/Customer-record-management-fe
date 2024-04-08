@@ -10,20 +10,17 @@ function CustomFieldList() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const { accountId } = useParams();
-  const [customerRecordFields, setCustomerRecordFields] = useState([]);
+  const [customFields, setCustomFields] = useState([]);
   const [isSideWindowEnabled, setIsSideWindowEnabled] = useState(false);
 
   useEffect(() => {
-    getCustomerRecordFields();
+    fetchCustomFields();
   }, []);
 
-  async function getCustomerRecordFields() {
-    return await api
-      .get(`/customer-records/fields/account/${accountId}`)
-      .then((response) => {
-        let fields = response.data;
-        setCustomerRecordFields(fields);
-      })
+  function fetchCustomFields() {
+    api
+      .get(`/custom-fields/account/${accountId}`)
+      .then(({ data }) => setCustomFields(data))
       .catch((error) => {
         console.error("Error fetching JSON data", error);
       });
@@ -34,7 +31,7 @@ function CustomFieldList() {
       {isSideWindowEnabled && (
         <CustomFieldForm
           accountId={accountId}
-          fetchCustomerRecordFields={getCustomerRecordFields}
+          fetchCustomerRecordFields={fetchCustomFields}
           setEnable={setIsSideWindowEnabled}
         />
       )}
@@ -53,9 +50,27 @@ function CustomFieldList() {
             </button>
           </div>
 
-          <ul className="custom-fields">
-            {customerRecordFields.map((field, i) => (
-              <li key={i}>{convertToNormalText(field)}</li>
+          <div className="contact-header">
+            <span className="header-name">Name</span>
+            <span className="header-mobile">Type</span>
+            <span className="header-city">Required</span>
+          </div>
+
+          <ul className="contact-list">
+            {customFields.map((field) => (
+              <li key={field.id}>
+                <div className="contact-item">
+                  <span className="contact-name">
+                    {convertToNormalText(field.customFieldName)}
+                  </span>
+                  <span className="contact-mobile">
+                    {convertToNormalText(field.dataType)}
+                  </span>
+                  <span className="contact-city">
+                    {field.required ? "Yes" : "No"}
+                  </span>
+                </div>
+              </li>
             ))}
           </ul>
         </section>

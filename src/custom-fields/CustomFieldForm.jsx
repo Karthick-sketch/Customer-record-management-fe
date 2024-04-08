@@ -6,7 +6,7 @@ import "./CustomField.css";
 function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
   const [customField, setCustomField] = useState({});
-  const [requiredField, setRequiredField] = useState({});
+  const [requiredField, setRequiredField] = useState(false);
 
   function handleChange(e) {
     e.preventDefault();
@@ -20,11 +20,7 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
   }
 
   function handleRequiredFieldChange(e) {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setRequiredField({
-      [name]: value === "on",
-    });
+    setRequiredField(e.target.checked);
   }
 
   function handleSubmit(e) {
@@ -32,14 +28,14 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
     let requestBody = {
       accountId: accountId,
       ...customField,
-      ...requiredField,
+      required: requiredField,
     };
     api
       .post("/custom-fields", requestBody)
       .then((response) => {
+        toast.success("Custom field created");
         disableFormWindow();
         fetchCustomerRecordFields();
-        toast.success("Custom field created");
       })
       .catch((error) => console.error(error));
   }
@@ -52,7 +48,7 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
     <div className="right-side-window">
       <ToastContainer position="bottom-left" />
       <div className="right-side-window-header">
-        <h2>Add contacts</h2>
+        <h2>Add custom fields</h2>
         <button className="close-btn" onClick={disableFormWindow}>
           <img src="/src/assets/close.svg" alt="close" />
         </button>
@@ -61,7 +57,6 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
       <form className="right-side-window-form" onSubmit={handleSubmit}>
         <div className="input-field-container">
           <label className="input-field-label">Field name</label>
-          <br />
           <input
             type="text"
             name="customFieldName"
@@ -69,9 +64,9 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
             onChange={handleChange}
             required
           />
-          <br /> <br />
+        </div>
+        <div className="input-field-container">
           <label className="input-field-label">Field type</label>
-          <br />
           <select
             name="dataType"
             className="input-field"
@@ -83,7 +78,8 @@ function CustomFieldForm({ accountId, fetchCustomerRecordFields, setEnable }) {
             <option value="number">Number</option>
             <option value="date">Date</option>
           </select>
-          <br /> <br />
+        </div>
+        <div className="input-field-container">
           <label className="input-field-label">
             <input
               type="checkbox"
