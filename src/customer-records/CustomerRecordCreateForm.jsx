@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import ContactForm from "./ContactForm";
 
-function CustomerRecordCreateForm({ accountId, setEnable }) {
+function CustomerRecordCreateForm({ accountId, toast, setEnable }) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const navigateTo = useNavigate();
@@ -20,6 +19,7 @@ function CustomerRecordCreateForm({ accountId, setEnable }) {
       .then(({ data }) => {
         let id = data.customerRecord.id;
         navigateTo(`/contacts/account/${accountId}/id/${id}`);
+        toast.success("Contact created successfully");
       })
       .catch((error) => {
         console.error(error);
@@ -29,7 +29,6 @@ function CustomerRecordCreateForm({ accountId, setEnable }) {
 
   return (
     <div className="right-side-window">
-      <ToastContainer position="bottom-left" />
       <div className="right-side-window-header">
         <h2>Create contact</h2>
         <button className="close-btn" onClick={() => setEnable(false)}>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function ListForm({ disable }) {
+function ListForm({ toast, disable }) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const navigateTo = useNavigate();
@@ -13,12 +13,13 @@ function ListForm({ disable }) {
     setListName(e.target.value);
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await api
+    api
       .post("/lists", { accountId: accountId, listName: listName })
       .then(({ data: { id } }) => {
         navigateTo(`/lists/account/${accountId}/id/${id}`);
+        toast.success("List created successfully");
       })
       .catch((error) => console.error(error));
   }

@@ -1,4 +1,3 @@
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import ContactForm from "./ContactForm";
@@ -6,6 +5,7 @@ import ContactForm from "./ContactForm";
 function CustomerRecordEditForm({
   customerRecord,
   setCustomerRecord,
+  toast,
   setEnable,
 }) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
@@ -26,6 +26,7 @@ function CustomerRecordEditForm({
       .patch(`/customer-records/account/${accountId}/id/${id}`, obj)
       .then((response) => {
         console.log(response.data);
+        toast.success("Contact updated successfully");
         disableSideWindow();
       })
       .catch((error) => {
@@ -36,7 +37,6 @@ function CustomerRecordEditForm({
 
   return (
     <div className="right-side-window">
-      <ToastContainer position="bottom-left" />
       <div className="right-side-window-header">
         <h2>Edit contact</h2>
         <button className="close-btn" onClick={disableSideWindow}>

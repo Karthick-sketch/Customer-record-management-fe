@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import CustomerRecordCreateForm from "./CustomerRecordCreateForm";
 import Search from "../search/Search";
@@ -40,11 +41,13 @@ function CustomerRecordList() {
       {isSideWindowEnabled && (
         <CustomerRecordCreateForm
           accountId={accountId}
+          toast={toast}
           setEnable={setIsSideWindowEnabled}
         />
       )}
       <div className={`container ${isSideWindowEnabled ? "dim-page" : ""}`}>
         <SideBar accountId={accountId} />
+        <ToastContainer position="bottom-left" />
 
         <section className="content">
           <div className="header">

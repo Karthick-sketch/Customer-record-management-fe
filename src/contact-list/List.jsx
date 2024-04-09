@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Search from "../search/Search";
 import SideBar from "../side-bar/SideBar";
@@ -44,12 +45,14 @@ function List() {
         <ListAddContactForm
           accountId={accountId}
           list={list}
+          toast={toast}
           fetchContactList={fetchCustomerRecords}
           setEnable={setIsSideWindowEnabled}
         />
       )}
       <div className="container">
         <SideBar accountId={accountId} />
+        <ToastContainer position="bottom-left" />
 
         <section className="content">
           <div className="header">

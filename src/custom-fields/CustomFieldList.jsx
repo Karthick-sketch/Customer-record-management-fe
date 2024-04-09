@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import SideBar from "../side-bar/SideBar";
 import "./CustomField.css";
@@ -31,13 +32,15 @@ function CustomFieldList() {
       {isSideWindowEnabled && (
         <CustomFieldForm
           accountId={accountId}
-          fetchCustomerRecordFields={fetchCustomFields}
+          toast={toast}
+          fetchCustomFields={fetchCustomFields}
           setEnable={setIsSideWindowEnabled}
         />
       )}
 
       <div className="container">
         <SideBar accountId={accountId} />
+        <ToastContainer position="bottom-left" />
 
         <section className="content">
           <div className="header">

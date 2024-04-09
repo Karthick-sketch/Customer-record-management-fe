@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./List.css";
 
-function ListAddContactForm({ accountId, list, fetchContactList, setEnable }) {
+function ListAddContactForm({
+  accountId,
+  list,
+  toast,
+  fetchContactList,
+  setEnable,
+}) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const [contacts, setContacts] = useState([]);
@@ -15,7 +21,9 @@ function ListAddContactForm({ accountId, list, fetchContactList, setEnable }) {
   function fetchCustomerRecords() {
     api
       .get(`/lists/account/${accountId}/id/${list.id}/contacts`)
-      .then(({ data }) => setCustomerRecords(data))
+      .then(({ data }) => {
+        setCustomerRecords(data);
+      })
       .catch((error) => {
         console.error("Error fetching JSON data", error);
       });
@@ -61,6 +69,7 @@ function ListAddContactForm({ accountId, list, fetchContactList, setEnable }) {
     api
       .post("/lists/add", requestBody)
       .then((response) => {
+        toast.success("Contacts added to List");
         fetchContactList();
         disableFormWindow();
       })
