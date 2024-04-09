@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
 import "./SideBar.css";
+import { useEffect } from "react";
 
 function SideBar({ accountId }) {
   accountId = 1;
+
+  useEffect(() => {
+    highlight();
+  }, []);
+
+  function highlight() {
+    let navbarLinks = document.getElementsByClassName("navbar-link");
+    let url = window.location.href;
+    for (let link of navbarLinks) {
+      if (url === link.href) {
+        let li = link.parentElement;
+        li.style.backgroundColor = "#555";
+      }
+    }
+  }
+
   return (
     <section className="navbar">
       <p className="logo">LOGO</p>

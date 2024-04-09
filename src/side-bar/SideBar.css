@@ -23,6 +23,7 @@
 }
 
 .navbar ul li {
+  margin-bottom: 4px;
   padding: 10px;
   color: white;
   cursor: pointer;

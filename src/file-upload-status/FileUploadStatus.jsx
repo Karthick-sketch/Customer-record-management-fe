@@ -13,11 +13,18 @@ function FileUploadStatus() {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    fetch("/file-upload-status.json")
-      .then((response) => response.json())
-      .then((data) => setFileUploadStatus(data.fileUploadStatus))
-      .catch((error) => console.error(error));
+    fetchFileUploadStatus();
   }, []);
+
+  function fetchFileUploadStatus() {
+    api
+      .get(`/upload-status/account/${accountId}/all`)
+      .then(({ data }) => {
+        console.log(data);
+        setFileUploadStatus(data);
+      })
+      .catch((error) => console.error(error));
+  }
 
   function handleFile(e) {
     setFile(e.target.files[0]);
@@ -48,12 +55,19 @@ function FileUploadStatus() {
           <h2>File Uploads</h2>
         </div>
 
-        <div>
+        <div className="upload-container">
           <ToastContainer position="bottom-left" />
           <form onSubmit={handleSubmit}>
-            <p>Upload CSV file</p>
-            <input type="file" name="csvFile" onChange={handleFile} />
-            <input type="submit" value="Upload" />
+            <label htmlFor="file-upload" className="upload-label">
+              Upload CSV file
+            </label>
+            <input
+              type="file"
+              id="file-upload"
+              name="csvFile"
+              onChange={handleFile}
+            />
+            <input type="submit" value="Upload" className="upload-btn" />
           </form>
         </div>
 
