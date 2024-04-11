@@ -2,10 +2,18 @@ import { useState } from "react";
 import axios from "axios";
 import "./CustomField.css";
 
-function CustomFieldForm({ accountId, toast, fetchCustomFields, setEnable }) {
+function CustomFieldEditForm({
+  toast,
+  customFieldData,
+  fetchCustomFields,
+  setEnable,
+}) {
   const api = axios.create({ baseURL: "http://localhost:8080" });
-  const [customField, setCustomField] = useState({});
-  const [requiredField, setRequiredField] = useState(false);
+  const [customField, setCustomField] = useState({
+    customFieldName: customFieldData.customFieldName,
+    dataType: customFieldData.dataType,
+  });
+  const [requiredField, setRequiredField] = useState(customFieldData.required);
 
   function handleChange(e) {
     e.preventDefault();
@@ -26,9 +34,12 @@ function CustomFieldForm({ accountId, toast, fetchCustomFields, setEnable }) {
     e.preventDefault();
     let requestBody = { ...customField, required: requiredField };
     api
-      .post(`/custom-fields/account/${accountId}`, requestBody)
+      .patch(
+        `/custom-fields/account/${customFieldData.accountId}/id/${customFieldData.id}`,
+        requestBody
+      )
       .then((response) => {
-        toast.success("Custom field created");
+        toast.success("Custom field updated");
         disableFormWindow();
         fetchCustomFields();
       })
@@ -42,7 +53,7 @@ function CustomFieldForm({ accountId, toast, fetchCustomFields, setEnable }) {
   return (
     <div className="right-side-window">
       <div className="right-side-window-header">
-        <h2>Add custom fields</h2>
+        <h2>Edit custom fields</h2>
         <button className="close-btn" onClick={disableFormWindow}>
           <img src="/src/assets/close.svg" alt="close" />
         </button>
@@ -53,6 +64,7 @@ function CustomFieldForm({ accountId, toast, fetchCustomFields, setEnable }) {
           <label className="input-field-label">Field name</label>
           <input
             type="text"
+            value={customField.customFieldName}
             name="customFieldName"
             className="input-field"
             onChange={handleChange}
@@ -62,6 +74,7 @@ function CustomFieldForm({ accountId, toast, fetchCustomFields, setEnable }) {
         <div className="input-field-container">
           <label className="input-field-label">Field type</label>
           <select
+            value={customField.dataType}
             name="dataType"
             className="input-field"
             onChange={handleChange}
@@ -79,16 +92,17 @@ function CustomFieldForm({ accountId, toast, fetchCustomFields, setEnable }) {
               type="checkbox"
               name="required"
               onChange={handleRequiredFieldChange}
+              checked={requiredField}
             />
             Mandatory field
           </label>
         </div>
         <footer>
-          <input type="submit" value="Create" className="create-btn" />
+          <input type="submit" value="Edit" className="create-btn" />
         </footer>
       </form>
     </div>
   );
 }
 
-export default CustomFieldForm;
+export default CustomFieldEditForm;

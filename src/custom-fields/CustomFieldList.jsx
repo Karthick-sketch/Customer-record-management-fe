@@ -6,13 +6,18 @@ import SideBar from "../side-bar/SideBar";
 import "./CustomField.css";
 import { convertToNormalText } from "../utils/StringUtils";
 import CustomFieldForm from "./CustomFieldForm";
+import CustomFieldEditForm from "./CustomFieldEditForm";
 
 function CustomFieldList() {
   const api = axios.create({ baseURL: "http://localhost:8080" });
 
   const { accountId } = useParams();
   const [customFields, setCustomFields] = useState([]);
-  const [isSideWindowEnabled, setIsSideWindowEnabled] = useState(false);
+  const [isSideWindowEnabledForCreate, setIsSideWindowEnabledForCreate] =
+    useState(false);
+  const [isSideWindowEnabledForEdit, setIsSideWindowEnabledForEdit] =
+    useState(false);
+  const [customFieldForEdit, setCustomFieldForEdit] = useState(0);
 
   useEffect(() => {
     fetchCustomFields();
@@ -27,18 +32,38 @@ function CustomFieldList() {
       });
   }
 
+  function enableEditForm(field) {
+    setCustomFieldForEdit(field);
+    setIsSideWindowEnabledForEdit(true);
+  }
+
   return (
     <>
-      {isSideWindowEnabled && (
+      {isSideWindowEnabledForCreate && (
         <CustomFieldForm
           accountId={accountId}
           toast={toast}
           fetchCustomFields={fetchCustomFields}
-          setEnable={setIsSideWindowEnabled}
+          setEnable={setIsSideWindowEnabledForCreate}
         />
       )}
 
-      <div className="container">
+      {isSideWindowEnabledForEdit && (
+        <CustomFieldEditForm
+          toast={toast}
+          customFieldData={{ ...customFieldForEdit }}
+          fetchCustomFields={fetchCustomFields}
+          setEnable={setIsSideWindowEnabledForEdit}
+        />
+      )}
+
+      <div
+        className={`container custom-field-container ${
+          isSideWindowEnabledForCreate || isSideWindowEnabledForEdit
+            ? "dim-page"
+            : ""
+        }`}
+      >
         <SideBar accountId={accountId} />
         <ToastContainer position="bottom-left" />
 
@@ -47,7 +72,7 @@ function CustomFieldList() {
             <h2>Custom fields</h2>
             <button
               className="contact-create-btn"
-              onClick={() => setIsSideWindowEnabled(true)}
+              onClick={() => setIsSideWindowEnabledForCreate(true)}
             >
               Add
             </button>
@@ -62,17 +87,22 @@ function CustomFieldList() {
           <ul className="contact-list">
             {customFields.map((field) => (
               <li key={field.id}>
-                <div className="contact-item">
-                  <span className="contact-name">
-                    {convertToNormalText(field.customFieldName)}
-                  </span>
-                  <span className="contact-mobile">
-                    {convertToNormalText(field.dataType)}
-                  </span>
-                  <span className="contact-city">
-                    {field.required ? "Yes" : "No"}
-                  </span>
-                </div>
+                <button
+                  className="row-btn"
+                  onClick={() => enableEditForm(field)}
+                >
+                  <div className="contact-item">
+                    <span className="contact-name">
+                      {convertToNormalText(field.customFieldName)}
+                    </span>
+                    <span className="contact-mobile">
+                      {convertToNormalText(field.dataType)}
+                    </span>
+                    <span className="contact-city">
+                      {field.required ? "Yes" : "No"}
+                    </span>
+                  </div>
+                </button>
               </li>
             ))}
           </ul>
